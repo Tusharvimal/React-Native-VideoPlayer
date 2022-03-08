@@ -1,21 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import VideoNavigation from './Navigation/VideoNavigation';
+import { Provider } from 'react-redux';
+import store from './store/store';
+import { videothumbnails, albumsAssets } from './helpers/db';
+
+videothumbnails().then(() => {
+  console.log('Initialized thumbnails database')
+}).catch(err => {
+  console.log('Initializing thunmbnails db failed');
+  console.log(err)
+})
+
+albumsAssets().then(() => {
+  console.log('Initialized assets database')
+}).catch(err => {
+  console.log('Initializing assets db failed');
+  console.log(err)
+})
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <VideoNavigation />
+    </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
