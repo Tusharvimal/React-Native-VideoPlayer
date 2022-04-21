@@ -22,6 +22,4 @@ For Navigation i have used @react-navigation/native module.
 
 App Contains only Stack Navigation.
 
-It also have functionality to find the meals by setting some filters.
-
 To handle state changes it uses redux module.
